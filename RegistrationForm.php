@@ -1,0 +1,111 @@
+<?php
+$servername='localhost';
+$username='root';
+$password='';
+$database='log';
+$con=mysqli_connect($servername,$username,$password,$database);
+if($con){
+echo "connected successfully";
+}
+else{
+echo "not connected";
+}
+if(isset($_POST['submit'])){
+$a=$_POST['firstname'];
+$b=$_POST['lastname'];
+$c=$_POST['username'];
+$d=$_POST['email'];
+$e=$_POST['password'];
+$f=$_POST['phonenumber'];
+$g=$_POST['age'];
+$h=$_POST['language'];
+$sql="INSERT INTO registration(firstname,lastname,username,email,password,phonenumber,age,language)
+VALUES('$a','$b','$c','$d','$e','$f','$g','$h' )";
+$run=mysqli_query($con,$sql);
+if($run){
+echo "<script>alert('registration sent successfully')</script>";
+header('location:balance.php');
+}
+}
+?>
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registration Form </title>
+        <link rel="stylesheet"href="Login style.css">
+    </head>
+    <body>
+        <div class="menu">
+            <ul>
+                <li><a href="Homepage.html">HOME</a></li>
+      <li>	<a href="Balance.html">SERVICE</a></li>
+        <li><a href="Overview.html">OVERVIEW</a></li>
+        <li><a href="About.html">ABOUT</a></li>
+    <li><a href="contact.html">CONTACT US</a></li>
+    <li><a href="LoginnFORM.php">LOGIN</a></li>
+<li><a href="RegistrationForm.php">SIGN UP</a></li>
+        </ul>	
+        </div>
+        <center>
+        <h1>Registration Form</h1>
+        
+        <form action="RegistrationForm.php"method="post">
+            <table border="0" cellspacing="10">
+                <tr>
+            <td><label for="firstname">Enter First Name:</label></td>
+            <td><input type="text"id="firstname" name="firstname"></td>
+        </tr>
+        <tr>
+            <td><label for="lastname">Enter Last Name:</label></td>
+            <td><input type="text"id="lastname" name="lastname"></td>
+        </tr>
+        <tr>
+           <td> <label for="username">Enter Username:</label></td>
+           <td> <input type="text"id="username" name="username"></td>
+        </tr>
+        <tr>
+           <td> <label for="email">Enter Email     :</label></td>
+           <td> <input type="email"id="email" name="email"></td>
+        </tr>
+        <tr>
+           <td> <label for="password">Enter Password    :</label></td>
+           <td> <input type="password"id="password" name="password"></td>
+        </tr>
+        <tr>
+            <td><label for="phonenumber">Enter Phone Number:</label></td>
+            <td><input type="phonenumber"id="phonenumber" name="phonenumber"></td>
+        </tr>
+        <tr> 
+           <td>  <label for="age">Select range of your Age:</label></td>
+<td><input type="radio" name="age" value="0-25" id="option-1">
+<label for="option-1">0-25</label>
+
+<input type="radio" name="age" value="26-50" id="option-2">
+<label for="option-2">26-50</label>
+
+<input type="radio" name="age" value="51+" id="option-3">
+<label for="option-3">51+</label></td>
+</tr>
+<tr>
+    <td>
+<label for="language">Select your language:</label></td>
+<td><input type="radio" name="language" value="English" id="option-1">
+<label for="option-1">English</label>
+<input type="radio" name="language" value="French" id="option-2">
+<label for="option-2">French</label>
+<input type="radio" name="language" value="Kinyarwanda" id="option-3">
+<label for="option-3">Kinyarwanda</label></td>
+</tr>
+<tr>
+<td colspan="2"> <center><input type="submit" value="Sign Up"name="submit"></center></td>
+</tr>
+</table>
+</form>
+
+
+</div>
+        </center> 
+    </body>
+</html>
